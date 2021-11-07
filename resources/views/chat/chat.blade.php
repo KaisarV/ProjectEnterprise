@@ -9,61 +9,65 @@
                     <!-- DIRECT CHAT -->
                     <div class="card direct-chat direct-chat-primary">
                         <div class="card-header">
-                            <h3 class="card-title">{{ $person }}</h3>
+                            <h3 class="card-title"><b>{{ $person }}</b></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <!-- Conversations are loaded here -->
                             <div class="direct-chat-messages">
                                 <!-- Message. Default to the left -->
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        Is this template really for free? That's unbelievable!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
+                                @foreach ($chat as $c)
+                                    @if ($c->id_pengirim == Auth::user()->id)
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-right">You</span>
+                                                <span class="direct-chat-timestamp float-left">{{ $c->date }}
+                                                    {{ $c->time }}</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                {{ $c->chat }}
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                    @else
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-left">{{ $person }}</span>
+                                                <span class="direct-chat-timestamp float-right">{{ $c->date }}
+                                                    {{ $c->time }}</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                {{ $c->chat }}
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
 
+                                    @endif
+                                @endforeach
                                 <!-- Message to the right -->
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        You better believe it!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
+
                                 <!-- /.direct-chat-msg -->
-
-
-
                             </div>
                             <!--/.direct-chat-messages-->
-
-
                             <!-- /.direct-chat-pane -->
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <form action="#" method="post">
+                            <form action="/chat/send" method="post" role="form">
+                                @csrf
                                 <div class="input-group">
                                     <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                    <input type="hidden" name="id" value="{{ $id }}">
                                     <span class="input-group-append">
-                                        <button type="button" class="btn btn-primary">Send</button>
+                                        <button type="submit" class="btn btn-primary">Send</button>
                                     </span>
                                 </div>
                             </form>

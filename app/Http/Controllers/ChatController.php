@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+date_default_timezone_set("Asia/Jakarta");
+
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -22,13 +26,39 @@ class ChatController extends Controller
             ->orWhere('id_penerima', '=', $id)
             ->paginate();
 
-        $person =  $people = DB::table('users')->where('id', '=', $id)
+        $person =  DB::table('users')->where('id', '=', $id)
             ->paginate();
 
         return view('chat/chat', [
             'title' => 'Chat',
             'chat' => $chat,
-            'person' => $person[0]->name
+            'person' => $person[0]->name,
+            'id' => $id
         ]);
+    }
+
+    public function sendChat(Request $request)
+    {
+
+        $id = $request->id;
+        $chat = $request->message;
+        $curTime = new \DateTime();
+
+        $insert = DB::table('chats')->insert([
+            'id_pengirim' => Auth::user()->id,
+            'id_penerima' => $id,
+            'chat' => $chat,
+            'date' => $curTime->format("Y-m-d"),
+            'time' => $curTime->format("H:i")
+        ]);
+
+        $person =  $people = DB::table('users')->where('id', '=', $id)
+            ->paginate();
+
+
+        return redirect()->action(
+            [ChatController::class, 'getChat'],
+            ['id' => $id]
+        );
     }
 }

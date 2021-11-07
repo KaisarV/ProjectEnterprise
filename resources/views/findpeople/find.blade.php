@@ -40,7 +40,7 @@
                                 <div class="card-body">
                                     <h5>{{ $l->name }}</h5>
                                     <a type="submit" class="btn btn-primary mt-4"
-                                        href="/chat/{{ $l->id }}/room">Chat</a>
+                                        href="/chat/room/{{ $l->id }}">Chat</a>
                                 </div>
 
                             </div>

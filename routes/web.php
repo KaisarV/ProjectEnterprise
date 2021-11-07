@@ -33,4 +33,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
 Route::get('/find', [FindPeopleController::class, 'index']);
 Route::post('/find/search', [FindPeopleController::class, 'getPeople']);
-Route::get('/chat/{id}/room', [ChatController::class, 'getChat']);
+Route::get('/chat/room/{id}', [ChatController::class, 'getChat']);
+Route::post('/chat/send', [ChatController::class, 'sendChat']);
