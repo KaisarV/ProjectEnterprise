@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class FindPeopleController extends Controller
 
     public function index()
     {
-        $people = DB::table('users')->get();
+        $people = DB::table('users')->where('id', '!=', Auth::user()->id)->get();
 
         return view('findpeople/find', [
             'title' => 'Find',
@@ -28,7 +29,10 @@ class FindPeopleController extends Controller
 
         $name = $request->people;
 
-        $people = DB::table('users')->where('name', 'like', '%' . $name . '%')->paginate();
+        $people = DB::table('users')->where('name', 'like', '%' . $name . '%')
+            ->where('id', '!=', Auth::user()->id)
+            ->paginate();
+
         return view('findpeople/find', [
             'title' => 'Find',
             'listpeople' => $people

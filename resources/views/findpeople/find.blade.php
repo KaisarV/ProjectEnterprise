@@ -39,7 +39,8 @@
                             <div class="card  forhover">
                                 <div class="card-body">
                                     <h5>{{ $l->name }}</h5>
-                                    <a type="submit" class="btn btn-primary mt-4">Chat</a>
+                                    <a type="submit" class="btn btn-primary mt-4"
+                                        href="/chat/{{ $l->id }}/room">Chat</a>
                                 </div>
 
                             </div>

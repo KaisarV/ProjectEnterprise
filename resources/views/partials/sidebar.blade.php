@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav-header">MENU</li>
                 <li class="nav-item">
-                    <a href="/chat" class="nav-link">
+                    <a href="/chat" class="nav-link {{ $title === 'Chat' ? 'active' : '' }} ">
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Chat

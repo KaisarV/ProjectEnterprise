@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FindPeopleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -31,4 +32,5 @@ Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
 Route::get('/find', [FindPeopleController::class, 'index']);
-Route::post('/find/search', [FindPeopleController::class, 'getpeople']);
+Route::post('/find/search', [FindPeopleController::class, 'getPeople']);
+Route::get('/chat/{id}/room', [ChatController::class, 'getChat']);
