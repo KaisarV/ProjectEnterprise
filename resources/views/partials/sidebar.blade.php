@@ -46,11 +46,19 @@
                 </li>
                 <li class="nav-header">MENU</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/chat" class="nav-link">
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Chat
                             <span class="badge badge-info right">2</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/find" class="nav-link {{ $title === 'Find' ? 'active' : '' }} ">
+                        <i class="nav-icon fas fa-search"></i>
+                        <p>
+                            Find Other Worker
                         </p>
                     </a>
                 </li>

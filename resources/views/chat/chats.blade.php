@@ -42,7 +42,10 @@
                                     <div class="col">
                                         <div class="custom-file">
                                             <p>Select image to upload : </p>
-
+                                            <?php
+                                            $id = Auth::user();
+                                            echo $id->name;
+                                            ?>
                                             <input type="file" id="validatedCustomFile" required name="myfile">
                                             <label class="custom-file-label" for="validatedCustomFile">Choose
                                                 file...</label>

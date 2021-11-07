@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FindPeopleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,11 @@ Route::get('/login', [LoginController::class, 'index']);
 // Route::post('/login2', [LoginController::class, 'authenticate']);
 Route::post('/login2', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('/todo', [TodoController::class, 'index']);
+
 Route::get('/todo/create', [TodoController::class, 'create']);
 Auth::routes();
 Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
+Route::get('/find', [FindPeopleController::class, 'index']);
+Route::post('/find/search', [FindPeopleController::class, 'getpeople']);
