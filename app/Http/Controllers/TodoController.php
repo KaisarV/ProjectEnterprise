@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+date_default_timezone_set("Asia/Jakarta");
+
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +18,11 @@ class TodoController extends Controller
     }
     public function index()
     {
-        $todo = Todolist::all()->where('id_user', '=', Auth::user()->id);
+        $todo = DB::table('todolists')->where('id_user', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
+
         return view('todo/todo', [
             'title' => 'Todo List',
             'todo' => $todo
-
         ]);
     }
 
@@ -34,9 +36,12 @@ class TodoController extends Controller
 
     public function insertTodo(Request $request)
     {
+        $curTime = new \DateTime();
         $query = Todolist::insert([
             "title" => $request['title'],
             "text" => $request['todo'],
+            'date' => $curTime->format("Y-m-d"),
+            'time' => $curTime->format("H:i"),
             "id_user" => Auth::user()->id
         ]);
         return redirect('/todo');
@@ -46,8 +51,16 @@ class TodoController extends Controller
     {
 
         $todo2 = Todolist::all()->where('id', '=', $id);
+        $idUserNow = Auth::user()->id;
+        $cek = 0;
 
-        if (Auth::user()->id == $todo2[0]->id_user) {
+        for ($i = 0; $i < count($todo2); $i++) {
+            if ($todo2[$i]->id_user == $idUserNow) {
+                $cek = 1;
+            }
+        }
+
+        if ($cek == 1) {
             $todo2 = DB::table('todolists')
                 ->where('id', '=', $id)
                 ->delete();

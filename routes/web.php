@@ -8,7 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,9 @@ Route::post('/find/search', [FindPeopleController::class, 'getPeople']);
 Route::get('/chat', [ChatController::class, 'index']);
 Route::get('/chat/room/{id}', [ChatController::class, 'getChat']);
 Route::post('/chat/send', [ChatController::class, 'sendChat']);
+
+//Discussion
+Route::get('/discussion', [DiscussionController::class, 'index']);
+
+//Profile
+Route::get('/profile/{id}', [ProfileController::class, 'index']);

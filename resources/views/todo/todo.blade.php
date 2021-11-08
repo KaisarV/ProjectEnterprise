@@ -11,7 +11,7 @@
                     <div class="card card-warning">
 
                         <div class="card-header">
-                            <h3 class="card-title"><b>Insert TodoList</b> </h3>
+                            <h3 class="card-title"><b>Insert Note</b> </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -40,10 +40,10 @@
                     <br>
                     <hr>
                     <br>
-                    <h1>Your Todo List</h1>
+                    <h1>Your Note</h1>
                     <br>
-                    <hr>
-                    <br>
+
+
                     <?php
                     $index = 1;
                     ?>
