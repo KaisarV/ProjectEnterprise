@@ -1,20 +1,22 @@
 @extends('layouts/layout')
 <!-- Content Wrapper. Contains page content -->
 
+
 @section('container')
+
     <div class="mt-5">
-        <div class="content-wrapper">
-            <section class="content">
-                <div class="container-fluid">
+        <div class="content-wrapper ">
+            <section class="content ">
+                <div class="container-fluid ">
                     <!-- DIRECT CHAT -->
-                    <div class="card direct-chat direct-chat-primary">
+                    <div class="card direct-chat direct-chat-primary ">
                         <div class="card-header">
                             <h3 class="card-title"><b>{{ $person }}</b></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body" id="myDiv">
                             <!-- Conversations are loaded here -->
-                            <div class="direct-chat-messages">
+                            <div class="direct-chat-messages" id="myDiv">
                                 <!-- Message. Default to the left -->
                                 @foreach ($chat as $c)
                                     @if ($c->id_pengirim == Auth::user()->id)
@@ -80,4 +82,8 @@
             </section>
         </div>
     </div>
+    <script type="text/javascript">
+        var myDiv = document.getElementById("myDiv");
+        myDiv.scrollTop = myDiv.scrollHeight;
+    </script>
 @endsection

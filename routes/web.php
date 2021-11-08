@@ -23,15 +23,21 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 // Route::post('/login2', [LoginController::class, 'authenticate']);
-Route::post('/login2', [LoginController::class, 'actionlogin'])->name('actionlogin');
+// Route::post('/login2', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('/todo', [TodoController::class, 'index']);
-
-Route::get('/todo/create', [TodoController::class, 'create']);
 Auth::routes();
-Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Todo List
+Route::get('/todo/create', [TodoController::class, 'create']);
+Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
+
+//Find Person
 Route::get('/find', [FindPeopleController::class, 'index']);
 Route::post('/find/search', [FindPeopleController::class, 'getPeople']);
+
+//Chat
+Route::get('/chat', [ChatController::class, 'index']);
 Route::get('/chat/room/{id}', [ChatController::class, 'getChat']);
 Route::post('/chat/send', [ChatController::class, 'sendChat']);

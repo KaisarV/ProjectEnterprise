@@ -16,6 +16,8 @@ class CreateTodolistsTable extends Migration
         Schema::create('todolists', function (Blueprint $table) {
             $table->id();
             $table->string('text');
+            $table->date('date')->nullable();
+            $table->time('time')->nullable();
             $table->unsignedbigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->nullable();
             $table->timestamps();

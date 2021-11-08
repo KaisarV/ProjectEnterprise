@@ -17,7 +17,8 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pengirim')->nullable();
             $table->unsignedBigInteger('id_penerima')->nullable();
-            $table->string('chat')->nullable();
+            $table->longtext('chat')->nullable();
+            $table->longtext('dir')->nullable();
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->foreign('id_pengirim')->references('id')->on('users')->nullable();

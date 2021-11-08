@@ -17,13 +17,23 @@ class ChatController extends Controller
     }
     public function index()
     {
+        $chat = DB::table('chats')->where('id_pengirim', '=', Auth::user()->id)
+            ->orWhere('id_penerima', '=',  Auth::user()->id)
+            ->orderBy('id', 'DESC')->get();
+
+        return view('chat/chats', [
+            'title' => "Chat",
+            'chat' => $chat
+        ]);
     }
 
     public function getChat($id)
     {
 
         $chat = DB::table('chats')->where('id_pengirim', '=', $id)
+            ->where('id_penerima', '=', Auth::user()->id)
             ->orWhere('id_penerima', '=', $id)
+            ->where('id_pengirim', '=', Auth::user()->id)
             ->paginate();
 
         $person =  DB::table('users')->where('id', '=', $id)
