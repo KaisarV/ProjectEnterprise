@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FindPeopleController;
@@ -23,8 +23,6 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-// Route::post('/login2', [LoginController::class, 'authenticate']);
-// Route::post('/login2', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('/todo', [TodoController::class, 'index']);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -10,12 +10,18 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-info">
                     <h3 class="widget-user-username">{{ $profile->name }}</h3>
-                    <h5 class="widget-user-desc">Founder & CEO</h5>
+                    <h5 class="widget-user-desc">{{ $jabatan->jabatan }}</h5>
                 </div>
                 <div class="widget-user-image">
                     <img class="img-circle elevation-2" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
                 </div>
                 <div class="card-footer">
+                    @if ($profile->id == Auth::user()->id)
+                        <div class="text-center mt-4 mb-4">
+                            <a type="button" class="btn btn-dark" href="profile/edit">Edit Profile</a>
+                        </div>
+                    @endif
+
                     <div class="row">
                         <div class="col-sm-4 border-right">
                             <div class="description-block">

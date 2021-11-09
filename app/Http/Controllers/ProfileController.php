@@ -21,6 +21,15 @@ class ProfileController extends Controller
                 break;
             }
         }
-        return view('profile/profile', ['title' => 'Profile', 'profile' => $p]);
+
+        $positions = DB::table('jabatan')->where('id', '=', $p->id_jabatan)->get();
+
+        foreach ($positions as $j) {
+            if ($j->id == $p->id) {
+                break;
+            }
+        }
+
+        return view('profile/profile', ['title' => 'Profile', 'profile' => $p, 'jabatan' => $j]);
     }
 }

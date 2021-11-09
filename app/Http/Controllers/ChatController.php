@@ -17,13 +17,41 @@ class ChatController extends Controller
     }
     public function index()
     {
-        $chat = DB::table('chats')->where('id_pengirim', '=', Auth::user()->id)
-            ->orWhere('id_penerima', '=',  Auth::user()->id)
+        $id = [];
+        $idAuth = Auth::user()->id;
+        $chat = DB::table('chats')->where('id_pengirim', '=', $idAuth)
+            ->orWhere('id_penerima', '=',  $idAuth)
             ->orderBy('id', 'DESC')->get();
+
+        $tmpId = 0;
+
+
+
+        foreach ($chat as $c) {
+            $cek = 0;
+            if ($c->id_penerima != $idAuth) {
+                $tmpId = $c->id_penerima;
+            }
+            if ($c->id_pengirim != $idAuth) {
+                $tmpId = $c->id_pengirim;
+            }
+
+            for ($i = 0; $i < count($id); $i++) {
+                if ($tmpId == $id[$i]) {
+                    //Bila id ada di dalam array $id maka cek berubah menjadi 1
+                    $cek = 1;
+                }
+            }
+
+            if ($cek == 0) {
+                array_push($id, $tmpId);
+            }
+        }
 
         return view('chat/chats', [
             'title' => "Chat",
-            'chat' => $chat
+            'chat' => $chat,
+            'myId' => Auth::user()->id
         ]);
     }
 
@@ -36,7 +64,7 @@ class ChatController extends Controller
             ->where('id_pengirim', '=', Auth::user()->id)
             ->paginate();
 
-        $person =  DB::table('users')->where('id', '=', $id)
+        $person =  DB::table('users')->where('id', '=', $id)->where('id', '!=', null)
             ->paginate();
 
         return view('chat/chat', [

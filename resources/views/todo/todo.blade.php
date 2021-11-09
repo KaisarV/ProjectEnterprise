@@ -42,8 +42,6 @@
                     <br>
                     <h1>Your Note</h1>
                     <br>
-
-
                     <?php
                     $index = 1;
                     ?>
