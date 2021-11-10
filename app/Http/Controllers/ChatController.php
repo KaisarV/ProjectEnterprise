@@ -15,38 +15,37 @@ class ChatController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
-        $id = [];
+        // $id = [];
         $idAuth = Auth::user()->id;
         $chat = DB::table('chats')->where('id_pengirim', '=', $idAuth)
             ->orWhere('id_penerima', '=',  $idAuth)
             ->orderBy('id', 'DESC')->get();
 
-        $tmpId = 0;
+        // $tmpId = 0;
 
+        // foreach ($chat as $c) {
+        //     $cek = 0;
+        //     if ($c->id_penerima != $idAuth) {
+        //         $tmpId = $c->id_penerima;
+        //     }
+        //     if ($c->id_pengirim != $idAuth) {
+        //         $tmpId = $c->id_pengirim;
+        //     }
 
+        //     for ($i = 0; $i < count($id); $i++) {
+        //         if ($tmpId == $id[$i]) {
+        //             //Bila id ada di dalam array $id maka cek berubah menjadi 1
+        //             $cek = 1;
+        //         }
+        //     }
 
-        foreach ($chat as $c) {
-            $cek = 0;
-            if ($c->id_penerima != $idAuth) {
-                $tmpId = $c->id_penerima;
-            }
-            if ($c->id_pengirim != $idAuth) {
-                $tmpId = $c->id_pengirim;
-            }
-
-            for ($i = 0; $i < count($id); $i++) {
-                if ($tmpId == $id[$i]) {
-                    //Bila id ada di dalam array $id maka cek berubah menjadi 1
-                    $cek = 1;
-                }
-            }
-
-            if ($cek == 0) {
-                array_push($id, $tmpId);
-            }
-        }
+        //     if ($cek == 0) {
+        //         array_push($id, $tmpId);
+        //     }
+        // }
 
         return view('chat/chats', [
             'title' => "Chat",
@@ -67,11 +66,13 @@ class ChatController extends Controller
         $person =  DB::table('users')->where('id', '=', $id)->where('id', '!=', null)
             ->paginate();
 
+        $myId = Auth::user()->id;
         return view('chat/chat', [
             'title' => 'Chat',
             'chat' => $chat,
             'person' => $person[0]->name,
-            'id' => $id
+            'id' => $id,
+            'myId' => $myId
         ]);
     }
 
@@ -90,7 +91,7 @@ class ChatController extends Controller
             'time' => $curTime->format("H:i")
         ]);
 
-        $person =  $people = DB::table('users')->where('id', '=', $id)
+        $person =  DB::table('users')->where('id', '=', $id)
             ->paginate();
 
 

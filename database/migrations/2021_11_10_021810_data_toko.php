@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChatDiscussionsTable extends Migration
+class DataToko extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateChatDiscussionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chat_discussions', function (Blueprint $table) {
+        Schema::create('data_toko', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nama_toko');
+            $table->string('kota_toko');
+            $table->string('email_toko');
+            $table->string('nomor_telepon');
+            $table->string('alamat_toko');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateChatDiscussionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat_discussions');
+        Schema::dropIfExists('data_toko');
     }
 }

@@ -43,6 +43,8 @@ Route::post('/chat/send', [ChatController::class, 'sendChat']);
 
 //Discussion
 Route::get('/discussion', [DiscussionController::class, 'index']);
+Route::get('/discussion/chat/{id}', [DiscussionController::class, 'getChat']);
+Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 
 //Profile
 Route::get('/profile/{id}', [ProfileController::class, 'index']);

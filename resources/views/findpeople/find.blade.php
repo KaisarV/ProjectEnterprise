@@ -38,7 +38,7 @@
                             <!-- Default box -->
                             <div class="card  forhover">
                                 <div class="card-body">
-                                    <h5>{{ $l->name }}</h5>
+                                    <h5><a href="profile/{{ $l->id }}">{{ $l->name }}</a></h5>
                                     <a type="submit" class="btn btn-primary mt-4"
                                         href="/chat/room/{{ $l->id }}">Chat</a>
                                 </div>
