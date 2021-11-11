@@ -21,10 +21,11 @@
                     @php
                         if ($c->id_pengirim != $myId) {
                             $idChatFriend = $c->id_pengirim;
+                            $nameChatFriend = $c->nama_pengirim;
                         } else {
                             $idChatFriend = $c->id_penerima;
+                            $nameChatFriend = $c->nama_penerima;
                         }
-                        
                         $cek = 0;
                         
                         for ($i = 0; $i < count($id); $i++) {
@@ -43,18 +44,11 @@
                                     if ($c->id_penerima == $idChatFriend) {
                                         $sender = 'You';
                                     } else {
-                                        $tmp = DB::table('users')
-                                            ->where('id', '!=', $c->id)
-                                            ->get();
-                                    
-                                        $sender = $tmp[0]->name;
+                                        $sender = $c->nama_pengirim;
                                     }
                                     
-                                    $nameChatFriend = DB::table('users')
-                                        ->where('id', '=', $idChatFriend)
-                                        ->get();
                                 @endphp
-                                <h5 class="card-title"><b>{{ $nameChatFriend[0]->name }}</b></h5>
+                                <h5 class="card-title"><b>{{ $nameChatFriend }}</b></h5>
                             </div>
                             <div class="card-body">
                                 <p>
@@ -63,7 +57,6 @@
                             </div>
                         </a>
                     @endif
-
                 @endforeach
             </div>
         </section>

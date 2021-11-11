@@ -18,39 +18,18 @@ class ChatController extends Controller
 
     public function index()
     {
-        // $id = [];
+
         $idAuth = Auth::user()->id;
         $chat = DB::table('chats')->where('id_pengirim', '=', $idAuth)
             ->orWhere('id_penerima', '=',  $idAuth)
-            ->orderBy('id', 'DESC')->get();
-
-        // $tmpId = 0;
-
-        // foreach ($chat as $c) {
-        //     $cek = 0;
-        //     if ($c->id_penerima != $idAuth) {
-        //         $tmpId = $c->id_penerima;
-        //     }
-        //     if ($c->id_pengirim != $idAuth) {
-        //         $tmpId = $c->id_pengirim;
-        //     }
-
-        //     for ($i = 0; $i < count($id); $i++) {
-        //         if ($tmpId == $id[$i]) {
-        //             //Bila id ada di dalam array $id maka cek berubah menjadi 1
-        //             $cek = 1;
-        //         }
-        //     }
-
-        //     if ($cek == 0) {
-        //         array_push($id, $tmpId);
-        //     }
-        // }
+            ->join('users as A', 'chats.id_pengirim', '=', 'A.id')
+            ->join('users as B', 'chats.id_penerima', '=', 'B.id')
+            ->orderBy('id', 'DESC')->select('chats.*', 'A.name as nama_pengirim', 'B.name as nama_penerima')->get();
 
         return view('chat/chats', [
             'title' => "Chat",
             'chat' => $chat,
-            'myId' => Auth::user()->id
+            'myId' =>  $idAuth
         ]);
     }
 
