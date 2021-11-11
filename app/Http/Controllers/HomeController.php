@@ -30,7 +30,8 @@ class HomeController extends Controller
         return view('index', [
             'title' => 'Home',
             'greeting' => $this->getGreeting((int) date('H'), $this->getFirstName()),
-            'quote' =>  $this->getQuote((int) date('H'))
+            'quote' =>  $this->getQuote((int) date('H')),
+            'id_jabatan' => Auth::user()->id_jabatan
         ]);
     }
 

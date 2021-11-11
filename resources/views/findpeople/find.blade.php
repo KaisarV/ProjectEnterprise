@@ -25,7 +25,7 @@
         <style>
             .forhover:hover {
                 background-color: #17a2b8;
-                color: white
+                color: white;
             }
 
         </style>
@@ -38,23 +38,19 @@
                             <!-- Default box -->
                             <div class="card  forhover">
                                 <div class="card-body">
-                                    <h5><a href="profile/{{ $l->id }}">{{ $l->name }}</a></h5>
+                                    <h5><a style="color: black" href="profile/{{ $l->id }}"
+                                            class="forhover">{{ $l->name }}</a>
+                                    </h5>
                                     <a type="submit" class="btn btn-primary mt-4"
                                         href="/chat/room/{{ $l->id }}">Chat</a>
                                 </div>
-
                             </div>
-
                             <!-- /.card -->
                         </div>
                     </div>
                 </div>
             </section>
         @endforeach
-
-
-
-
     </div>
 
 @endsection

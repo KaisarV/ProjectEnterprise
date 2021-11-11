@@ -16,9 +16,10 @@
                     <img class="img-circle elevation-2" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
                 </div>
                 <div class="card-footer">
-                    @if ($profile->id == Auth::user()->id)
+                    @if ($profile->id == $myId)
                         <div class="text-center mt-4 mb-4">
-                            <a type="button" class="btn btn-dark" href="profile/edit">Edit Profile</a>
+                            <a type="button" class="btn btn-dark" href="/profile/edit/{{ $profile->id }}">Edit
+                                Profile</a>
                         </div>
                     @endif
 

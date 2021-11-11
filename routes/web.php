@@ -21,6 +21,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
+//Auth
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/todo', [TodoController::class, 'index']);
@@ -32,7 +33,7 @@ Route::get('/todo/create', [TodoController::class, 'create']);
 Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
 
-//Find Person
+//Find Employee
 Route::get('/find', [FindPeopleController::class, 'index']);
 Route::post('/find/search', [FindPeopleController::class, 'getPeople']);
 
@@ -48,3 +49,9 @@ Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 
 //Profile
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
+
+//Delete Employee
+Route::get('/deleteemployee', [DeleteEmployeeController::class, 'index']);
+
+//Delete Employee
+Route::get('/announce', [AnnouncementController::class, 'index']);

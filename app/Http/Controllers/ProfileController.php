@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -14,6 +15,7 @@ class ProfileController extends Controller
 
     public function index($id)
     {
+        $myId = Auth::user()->id;
         $profiles = DB::table('users')->where('id', '=', $id)->get();
 
         foreach ($profiles as $p) {
@@ -30,6 +32,6 @@ class ProfileController extends Controller
             }
         }
 
-        return view('profile/profile', ['title' => 'Profile', 'profile' => $p, 'jabatan' => $j]);
+        return view('profile/profile', ['title' => 'Profile', 'profile' => $p, 'jabatan' => $j, 'myId' => $myId]);
     }
 }

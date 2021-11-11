@@ -41,9 +41,41 @@
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home
+
                         </p>
                     </a>
                 </li>
+
+                @if (Auth::user()->id_jabatan == 1)
+                    <li class="nav-header">MENU ADMIN</li>
+                    <li class="nav-item">
+                        <a href="/register" class="nav-link {{ $title === 'Register Employee' ? 'active' : '' }} ">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                Register Employee
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/deleteemployee"
+                            class="nav-link {{ $title === 'Register Employee' ? 'active' : '' }} ">
+                            <i class="nav-icon fas fa-minus-square"></i>
+                            <p>
+                                Delete Employee
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/announce" class="nav-link {{ $title === 'Make Announcement' ? 'active' : '' }} ">
+                            <i class="nav-icon fas fa-bullhorn"></i>
+                            <p>
+                                Make Announcement
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
+
                 <li class="nav-header">MENU</li>
                 <li class="nav-item">
                     <a href="/chat" class="nav-link {{ $title === 'Chat' ? 'active' : '' }} ">
