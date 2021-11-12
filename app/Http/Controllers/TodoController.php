@@ -16,6 +16,7 @@ class TodoController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $todo = DB::table('todolists')->where('id_user', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
