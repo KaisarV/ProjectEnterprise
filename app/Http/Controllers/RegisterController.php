@@ -15,6 +15,8 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('register/register', ['title' => 'Register Employee']);
+        $jabatanlist = DB::table('jabatan')->get();
+        $storelist = DB::table('data_toko')->get();
+        return view('register/register', ['title' => 'Register Employee', 'jabatan' => $jabatanlist, 'store' => $storelist]);
     }
 }
