@@ -59,6 +59,7 @@ Route::get('/deleteemployee/delete/{id}', [DeleteEmployeeController::class, 'del
 
 //Register
 Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register/insert', [RegisterController::class, 'insertData']);
 
 //Announcement
 Route::get('/announce', [AnnouncementController::class, 'index']);
