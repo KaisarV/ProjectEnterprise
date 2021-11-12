@@ -10,6 +10,8 @@ use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DeleteEmployeeController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +26,11 @@ use App\Http\Controllers\ProfileController;
 //Auth
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/todo', [TodoController::class, 'index']);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Todo List
+Route::get('/todo', [TodoController::class, 'index']);
 Route::get('/todo/create', [TodoController::class, 'create']);
 Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
@@ -52,6 +54,11 @@ Route::get('/profile/{id}', [ProfileController::class, 'index']);
 
 //Delete Employee
 Route::get('/deleteemployee', [DeleteEmployeeController::class, 'index']);
+Route::post('/deleteemployee/search', [DeleteEmployeeController::class, 'getPeople']);
+Route::get('/deleteemployee/delete/{id}', [DeleteEmployeeController::class, 'deletePeople']);
 
-//Delete Employee
+//Register
+Route::get('/register', [RegisterController::class, 'index']);
+
+//Announcement
 Route::get('/announce', [AnnouncementController::class, 'index']);

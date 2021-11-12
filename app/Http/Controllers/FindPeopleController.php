@@ -31,6 +31,7 @@ class FindPeopleController extends Controller
 
         $people = DB::table('users')->where('name', 'like', '%' . $name . '%')
             ->where('id', '!=', Auth::user()->id)
+            ->where('id', '!=', Auth::user()->id)
             ->paginate();
 
         return view('findpeople/find', [

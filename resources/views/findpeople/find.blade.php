@@ -9,8 +9,7 @@
             </p>
             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
         </blockquote>
-        <!-- Content Header (Page header) -->
-        <!-- SidebarSearch Form -->
+
         <nav class="navbar navbar-light bg-light mb-3">
             <form class="mx-2 my-auto d-inline w-100" action="/find/search/" method="post" role="form">
                 @csrf

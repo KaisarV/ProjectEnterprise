@@ -58,7 +58,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="/deleteemployee"
-                            class="nav-link {{ $title === 'Register Employee' ? 'active' : '' }} ">
+                            class="nav-link {{ $title === 'Delete Employee' ? 'active' : '' }} ">
                             <i class="nav-icon fas fa-minus-square"></i>
                             <p>
                                 Delete Employee
