@@ -53,11 +53,31 @@ class DeleteEmployeeController extends Controller
     {
 
         if (Auth::user()->id_jabatan == 1) {
-            $delete = DB::table('users')->where('id', '=', $id)
+            if ($id > 3) {
+                $deleteDataUserCabang = DB::table('data_user_cabang')->where('id_user', '=', $id)
+                    ->delete();
+            }
+
+            $deleteChat = DB::table('chats')->where('id_pengirim', '=', $id)
+                ->orWhere('id_penerima', '=', $id)
                 ->delete();
+
+            $deleteDiscussionChat = DB::table('discussion_chat')->where('id_user', '=', $id)
+                ->delete();
+
+            $deleteMemberDiscussion = DB::table('discussion_member')->where('id_user', '=', $id)
+                ->delete();
+
+            $deleteTodoLists = DB::table('todolists')->where('id_user', '=', $id)
+                ->delete();
+
+            $deleteUser = DB::table('users')->where('id', '=', $id)
+                ->delete();
+
+
             return redirect()->action(
                 [DeleteEmployeeController::class, 'index']
-            );
+            )->with('success', 'The success message!');;
         }
     }
 }

@@ -45,32 +45,35 @@
                     <?php
                     $index = 1;
                     ?>
-                    @foreach ($todo as $t)
-
-                        <div class="card card-info card-outline" style="background-color: #333333">
-                            <div class="card-header" style="background-color: #e6b905">
-                                <h5 class="card-title text-white">{{ $t->title }}</h5>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-tool btn-link" style="color: white">#{{ $index }}</a>
-                                    <a href="#" class="btn btn-tool">
-                                        <i class="fas fa-pen white" style="color: white"></i>
-                                        <a href="/todo/{{ $t->id }}/delete" class="ml-2">
-                                            <i class="fas fa-trash white" style="color: white"></i>
-                                        </a>
-                                    </a>
+                    <div class="row">
+                        @foreach ($todo as $t)
+                            <div class="col-sm-5 ml-4 mr-4">
+                                <div class="card card-info card-outline " style="background-color: #333333">
+                                    <div class="card-header" style="background-color: #e6b905">
+                                        <h5 class="card-title text-white">{{ $t->title }}</h5>
+                                        <div class="card-tools">
+                                            <a href="#" class="btn btn-tool btn-link"
+                                                style="color: white">#{{ $index }}</a>
+                                            <a href="#" class="btn btn-tool">
+                                                <i class="fas fa-pen white" style="color: white"></i>
+                                                <a href="/todo/{{ $t->id }}/delete" class="ml-2">
+                                                    <i class="fas fa-trash white" style="color: white"></i>
+                                                </a>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-white">
+                                        <p style="color: white">
+                                            {!! $t->text !!}
+                                        </p>
+                                    </div>
                                 </div>
+                                <?php
+                                $index++;
+                                ?>
                             </div>
-                            <div class="card-body text-white">
-                                <p style="color: white">
-                                    {!! $t->text !!}
-                                </p>
-                            </div>
-                        </div>
-                        <?php
-                        $index++;
-                        ?>
-                    @endforeach
-
+                        @endforeach
+                    </div>
 
                 </div>
             </section>

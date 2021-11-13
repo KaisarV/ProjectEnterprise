@@ -17,6 +17,14 @@
                 });
             }).change();
         });
+
+        function ValidateEmail(mail) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)) {
+                return (true)
+            }
+            alert("You have entered an invalid email address!")
+            return (false)
+        }
     </script>
 
     <div class="content-wrapper mt-3">
@@ -29,44 +37,51 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="/register/insert" method="post" role="form">
+                    <form action="/register/insert" method="post" role="form" name="form1">
                         @csrf
                         <div class="form-group">
                             <label class="col-form-label" for="inputSuccess">Name</label>
                             <input type="text" class="form-control" id="inputSuccess" placeholder="Input Employee Name"
-                                name="name">
+                                name="name" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="inputWarning">
                                 Email</label>
                             <input type="text" class="form-control" id="inputWarning" placeholder="Input Employee Email"
-                                name="email">
+                                name="email" @error('email') is-invalid @enderror value="{{ old('email') }}" required
+                                autocomplete="email">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="inputError">Password</label>
                             <input type="password" class="form-control " id="inputError" placeholder="Input Password"
-                                name="password">
+                                name="password" required>
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="inputSuccess">NIK</label>
                             <input type="text" class="form-control" id="inputSuccess" placeholder="Input Employee NIK"
-                                name="nik">
+                                name="nik" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="inputSuccess">City</label>
                             <input type="text" class="form-control" id="inputSuccess" placeholder="Input Employee City"
-                                name="city">
+                                name="city" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="inputSuccess">Address</label>
                             <input type="text" class="form-control" id="inputSuccess" placeholder="Input Employee Address"
-                                name="address">
+                                name="address" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="inputSuccess">Phone Number</label>
                             <input type="text" class="form-control" id="inputSuccess"
-                                placeholder="Input Employee Phone Number" name="phone">
+                                placeholder="Input Employee Phone Number" name="phone" required>
                         </div>
 
 
@@ -89,7 +104,8 @@
                             </select>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Submit Data</button>
+                        <button type="submit" class="btn btn-primary" onclick="ValidateEmail(document.form1.email)">Submit
+                            Data</button>
                     </form>
                 </div>
             </div>

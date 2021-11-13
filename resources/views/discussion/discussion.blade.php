@@ -27,7 +27,7 @@
 
                     <div class="col-12" id="accordion">
                         @foreach ($discussion as $d)
-                            <div class="card card-primary card-outline text-center">
+                            <div class="card card-primary card-outline text-center ml-4 mr-4">
                                 <a class="d-block w-100" data-toggle="collapse" href="#">
                                     <div class="card-header">
                                         <h4 class="card-title w-100">

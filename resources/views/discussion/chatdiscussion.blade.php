@@ -9,7 +9,7 @@
             <section class="content ">
                 <div class="container-fluid ">
                     <!-- DIRECT CHAT -->
-                    <div class="card direct-chat direct-chat-primary ">
+                    <div class="card direct-chat direct-chat-primary ml-4 mr-4">
                         <div class="card-header">
                             <h3 class="card-title"><b>{{ $name }}</b></h3>
                         </div>
@@ -64,7 +64,7 @@
                                 @csrf
                                 <div class="input-group">
                                     <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                                    <input type="hidden" name="id" value="{{ $d->id_discussion }}">
+                                    <input type="hidden" name="id" value="{{ $idDiscussion }}">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-primary">Send</button>
                                     </span>

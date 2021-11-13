@@ -12,6 +12,7 @@ use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DeleteEmployeeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AnnouncementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

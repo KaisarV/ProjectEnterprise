@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 date_default_timezone_set("Asia/Jakarta");
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,9 @@ class RegisterController extends Controller
 
     public function insertData(Request $request)
     {
+        $cek = $this->validate($request, [
+            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
+        ]);
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -42,6 +46,8 @@ class RegisterController extends Controller
 
         $employeeId = DB::getPdo()->lastInsertId();
 
+
+        //Masuk Grup General
         DB::table('discussion_member')->insert([
             'id_discussion' => 8,
             'id_user' => $employeeId,
@@ -49,6 +55,7 @@ class RegisterController extends Controller
             'updated_at' => date("Y-m-d H:i:s")
         ]);
 
+        //Jika id jabatan lebih dari 3, maka bekerja di cabang
         if ($request['position'] > 3) {
             DB::table('data_user_cabang')->insert([
                 'id_user' => $employeeId,
@@ -65,6 +72,7 @@ class RegisterController extends Controller
                 }
             }
 
+            //Masuk Ke grup per cabangnya
             DB::table('discussion_member')->insert([
                 'id_discussion' => $idDiskusi,
                 'id_user' => $employeeId,
@@ -73,8 +81,28 @@ class RegisterController extends Controller
             ]);
         }
 
+        //Jika Kepala Cabang/Manager maka gabung grup manager - kepala cabang
+        if ($request['position'] == 4 || $request['position'] == 3) {
+            DB::table('discussion_member')->insert([
+                'id_discussion' => 6,
+                'id_user' => $employeeId,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ]);
+        }
+
+        //Jika Manager/Direktur maka gabung grup manager - Direktur
+        if ($request['position'] == 3 || $request['position'] == 2) {
+            DB::table('discussion_member')->insert([
+                'id_discussion' => 7,
+                'id_user' => $employeeId,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ]);
+        }
+
         return redirect()->action(
             [HomeController::class, 'index']
-        );
+        )->with('success', 'your message,here');
     }
 }

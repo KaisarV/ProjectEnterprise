@@ -37,7 +37,7 @@ class DiscussionController extends Controller
 
         $myId = Auth::user()->id;
 
-        return view('discussion/chatdiscussion', ['title' => 'Discussion', 'discussion' => $chatDiscussion, 'name' => $name, 'myId' =>  $myId]);
+        return view('discussion/chatdiscussion', ['title' => 'Discussion', 'discussion' => $chatDiscussion, 'name' => $name, 'myId' =>  $myId, 'idDiscussion' => $id]);
     }
 
     public function sendChat(Request $request)

@@ -1,8 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-@endsection
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +35,6 @@
             <div class="row">
                 <div class="container">
                     <br><br>
-
                     <div class="row justify-content-center">
 
                         <div class="col-md-8">
