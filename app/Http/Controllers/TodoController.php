@@ -71,4 +71,26 @@ class TodoController extends Controller
 
         return view('todo/todo', ['todo' => $todo, 'title' => 'Todo List', 'Method' => '']);
     }
+
+    public function editTodoPage($id)
+    {
+        $todo = DB::table('todolists')->where('id', '=', $id)->get();
+
+        return view('todo/edit', [
+            'title' => 'Todo List',
+            'todo' => $todo
+        ]);
+    }
+
+    public function editTodo(Request $request)
+    {
+        $todo = DB::table('todolists')->where('id', '=', $request->id)->update(['title' => $request['title'], 'text' => $request['todo']]);
+
+        $todo = DB::table('todolists')->where('id_user', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
+
+        return view('todo/todo', [
+            'title' => 'Todo List',
+            'todo' => $todo
+        ]);
+    }
 }

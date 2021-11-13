@@ -14,6 +14,19 @@
     <div class="content-wrapper">
         <section class="content ">
             <div class="container-fluid ">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">{{ $title }}</h1>
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <hr>
                 @php
                     $id = [];
                 @endphp
@@ -37,7 +50,8 @@
                     @endphp
 
                     @if ($cek == 0)
-                        <a href="/chat/room/{{ $idChatFriend }}" class="card card-light card-outline mt-3 hover2">
+                        <a href="/chat/room/{{ $idChatFriend }}"
+                            class="card card-light card-outline mt-3 hover2 ml-4 mr-4 mt-4">
                             <div class="card-header">
                                 @php
                                     array_push($id, $idChatFriend);

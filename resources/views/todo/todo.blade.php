@@ -52,9 +52,9 @@
                                     <div class="card-header" style="background-color: #e6b905">
                                         <h5 class="card-title text-white">{{ $t->title }}</h5>
                                         <div class="card-tools">
-                                            <a href="#" class="btn btn-tool btn-link"
+                                            <a href="" class="btn btn-tool btn-link"
                                                 style="color: white">#{{ $index }}</a>
-                                            <a href="#" class="btn btn-tool">
+                                            <a href="todo/edit/{{ $t->id }}" class="btn btn-tool">
                                                 <i class="fas fa-pen white" style="color: white"></i>
                                                 <a href="/todo/{{ $t->id }}/delete" class="ml-2">
                                                     <i class="fas fa-trash white" style="color: white"></i>

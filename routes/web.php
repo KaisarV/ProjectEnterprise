@@ -35,6 +35,8 @@ Route::get('/todo', [TodoController::class, 'index']);
 Route::get('/todo/create', [TodoController::class, 'create']);
 Route::post('/todo/store', [TodoController::class, 'insertTodo']);
 Route::get('/todo/{id}/delete', [TodoController::class, 'deleteTodo']);
+Route::get('/todo/edit/{id}', [TodoController::class, 'editTodoPage']);
+Route::post('/todo/edit/run', [TodoController::class, 'editTodo']);
 
 //Find Employee
 Route::get('/find', [FindPeopleController::class, 'index']);
@@ -53,9 +55,7 @@ Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 //Profile
 Route::post('/p/editprofile', [ProfileController::class, 'editProfile']);
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
-
 Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfilePage']);
-
 
 
 //Delete Employee

@@ -10,17 +10,27 @@
             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
         </blockquote>
 
-        <nav class="navbar navbar-light bg-light mb-3">
-            <form class="mx-2 my-auto d-inline w-100" action="/find/search/" method="post" role="form">
-                @csrf
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Someone" name="people">
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </span>
+
+        <section class="content mb-5">
+            <div class="container-fluid">
+                <h2 class="text-center display-4">Search</h2>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action="/find/search/" method="post" role="form">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search Someone" name="people"
+                                    placeholder="Type your keywords here">
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
-        </nav>
+            </div>
+        </section>
+
         <style>
             .forhover:hover {
                 background-color: #17a2b8;
@@ -28,28 +38,49 @@
             }
 
         </style>
-        @foreach ($listpeople as $l)
+        <div class="row">
+            @foreach ($listpeople as $l)
 
-            <section class="content text-center">
-                <div class="container-fluid">
-                    <div class="row ">
-                        <div class="col-12 ">
-                            <!-- Default box -->
-                            <div class="card  forhover">
-                                <div class="card-body">
-                                    <h5><a style="color: black" href="profile/{{ $l->id }}"
-                                            class="forhover">{{ $l->name }}</a>
-                                    </h5>
-                                    <a type="submit" class="btn btn-primary mt-4"
-                                        href="/chat/room/{{ $l->id }}">Chat</a>
+
+                <div class="col-12 col-sm-6 col-md-5 d-flex align-items-stretch flex-column ml-5 mr-4">
+                    <div class="card bg-light d-flex flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            {{ $l->jabatan }}
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>{{ $l->name }}</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee
+                                        Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i
+                                                    class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo
+                                            City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i
+                                                    class="fas fa-lg fa-phone"></i></span> Phone #: {{ $l->no_hp }}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
+                                        class="img-circle img-fluid">
                                 </div>
                             </div>
-                            <!-- /.card -->
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-right">
+                                <a href="/chat/room/{{ $l->id }}" class="btn btn-sm bg-teal">
+                                    <i class="fas fa-comments"></i>
+                                </a>
+                                <a href="profile/{{ $l->id }}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-user"></i> View Profile
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 
 @endsection

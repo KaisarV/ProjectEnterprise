@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
     public function index($id)
     {
-        var_dump($id);
+
         $myId = Auth::user()->id;
         $profiles = DB::table('users')->where('users.id', '=', $id)->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id')
             ->select('users.*', 'jabatan.jabatan')->get();

@@ -16,7 +16,11 @@ class FindPeopleController extends Controller
 
     public function index()
     {
-        $people = DB::table('users')->where('id', '!=', Auth::user()->id)->get();
+        $myId = Auth::user()->id;
+        $people = DB::table('users')->where('users.id', '!=', Auth::user()->id)->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id')
+            ->select('users.*', 'jabatan.jabatan')->get();;
+
+
 
         return view('findpeople/find', [
             'title' => 'Find',
