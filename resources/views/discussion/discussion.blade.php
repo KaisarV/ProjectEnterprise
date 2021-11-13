@@ -9,17 +9,13 @@
 
             <div class="content">
                 <div class="page-heading">
-                    <h3>Forum Diskusi</h3>
+                    <h3>Discussion</h3>
                     <blockquote class="blockquote text-right">
 
                         <div class="blockquote-footer">The aim of argument, or of discussion, should not be victory, but
                             progress. <cite title="Source Title">Joseph Joubert</cite></div>
                     </blockquote>
-                    <div class="input-group">
-                        <!-- Memanggil ajax untuk search -->
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" onkeydown="findDiscussion(this.value)">
-                    </div>
+
 
                 </div>
                 <br>

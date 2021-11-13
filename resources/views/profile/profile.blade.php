@@ -13,7 +13,8 @@
 
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle elevation-2" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+                    <img class="img-circle elevation-2" src="{{ asset('../dist/img/user1-128x128.jpg') }}"
+                        alt="User Avatar">
                 </div>
 
 
@@ -26,7 +27,6 @@
                         </div>
                     @endif
                     <div class="text-center">
-
                         <div class=" text-center">
                             <div class="text-center d-flex align-items-center justify-content-center">
                                 <div class="">
@@ -38,37 +38,8 @@
                                     </p>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-sm-4 border-right">
-                            <div class="description-block">
-                                <h5 class="description-header">3,200</h5>
-
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-4 border-right">
-                            <div class="description-block">
-                                <h5 class="description-header">13,000</h5>
-                                <span class="description-text">FOLLOWERS</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-4">
-                            <div class="description-block">
-                                <h5 class="description-header">35</h5>
-                                <span class="description-text">PRODUCTS</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                    </div> --}}
-                    <!-- /.row -->
                 </div>
             </div>
             <!-- /.widget-user -->

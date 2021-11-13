@@ -51,7 +51,12 @@ Route::get('/discussion/chat/{id}', [DiscussionController::class, 'getChat']);
 Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 
 //Profile
+Route::post('/p/editprofile', [ProfileController::class, 'editProfile']);
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
+
+Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfilePage']);
+
+
 
 //Delete Employee
 Route::get('/deleteemployee', [DeleteEmployeeController::class, 'index']);
