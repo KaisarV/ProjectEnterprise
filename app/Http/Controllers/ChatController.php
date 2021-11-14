@@ -44,12 +44,15 @@ class ChatController extends Controller
 
         $person =  DB::table('users')->where('id', '=', $id)->where('id', '!=', null)
             ->paginate();
-
+        $person2 =  DB::table('users')->where('id', '=', Auth::user()->id)->where('id', '!=', null)
+            ->paginate();
         $myId = Auth::user()->id;
         return view('chat/chat', [
             'title' => 'Chat',
             'chat' => $chat,
             'person' => $person[0]->name,
+            'img2' => $person[0]->foto,
+            'img1' => $person2[0]->foto,
             'id' => $id,
             'myId' => $myId
         ]);
@@ -68,6 +71,7 @@ class ChatController extends Controller
         $nama_file = "";
 
         $file = $request->file('file');
+
         if ($file != null) {
             $this->validate($request, [
                 'file' => 'file|image|mimes:jpeg,png,jpg|max:2048',
@@ -88,8 +92,8 @@ class ChatController extends Controller
             'time' => $curTime->format("H:i")
         ]);
 
-        $person =  DB::table('users')->where('id', '=', $id)
-            ->paginate();
+        // $person =  DB::table('users')->where('id', '=', $id)
+        //     ->paginate();
 
 
         return redirect()->back();

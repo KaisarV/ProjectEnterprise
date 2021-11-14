@@ -2,6 +2,12 @@
 
 
 @section('container')
+    @if (Session::has('success'))
+        <?php
+        echo '<script type="text/javascript"> $(document).ready(function(){swal({icon: "success", title: "Success Updated",showConfirmButton: false, timer: 1800}) });</script>';
+        ?>
+
+    @endif
     <div class="content-wrapper mt-3">
         <!-- /.col -->
         <section class="content ">

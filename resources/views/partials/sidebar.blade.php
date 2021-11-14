@@ -16,7 +16,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ url('/profile_file/' . $profile[0]->foto) }}" class="img-circle elevation-2"
+                <img src="{{ asset('/profile_file/' . $profile[0]->foto) }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
@@ -140,10 +140,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/chat" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">
+                    <a href="/feedback" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">
                         <i class="nav-icon fa fa-comment"></i>
                         <p>
-                            Feedback
+                            Feedback/Report
                         </p>
                     </a>
                 </li>

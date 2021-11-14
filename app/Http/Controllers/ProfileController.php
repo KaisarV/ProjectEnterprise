@@ -84,7 +84,7 @@ class ProfileController extends Controller
         return redirect()->action(
             [ProfileController::class, 'index'],
             ['id' => $id]
-        );
+        )->with('success', 'your message,here');
     }
 
     public function editPhotoPage($id)
@@ -140,6 +140,6 @@ class ProfileController extends Controller
             'foto' => $nama_file
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'your message,here');
     }
 }

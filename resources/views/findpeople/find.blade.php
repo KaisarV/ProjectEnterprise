@@ -40,8 +40,6 @@
         </style>
         <div class="row">
             @foreach ($listpeople as $l)
-
-
                 <div class="col-12 col-sm-6 col-md-5 d-flex align-items-stretch flex-column ml-5 mr-4">
                     <div class="card bg-light d-flex flex-fill">
                         <div class="card-header text-muted border-bottom-0">
@@ -62,7 +60,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
+                                    <img src="{{ asset('/profile_file/' . $l->foto) }}" alt="user-avatar"
                                         class="img-circle img-fluid">
                                 </div>
                             </div>

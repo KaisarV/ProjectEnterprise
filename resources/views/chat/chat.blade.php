@@ -22,7 +22,7 @@
                                                     {{ $c->time }}</span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
-                                            <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}"
+                                            <img class="direct-chat-img" src="{{ asset('/profile_file/' . $img1) }}"
                                                 alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
@@ -38,7 +38,7 @@
                                                     {{ $c->time }}</span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
-                                            <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}"
+                                            <img class="direct-chat-img" src="{{ asset('/profile_file/' . $img2) }}"
                                                 alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">

@@ -39,6 +39,7 @@ class RegisterController extends Controller
             'updated_at' => date("Y-m-d H:i:s"),
             'nik' => $request['nik'],
             'kota' => $request['city'],
+            'foto' => 'profile.png',
             'alamat' => $request['address'],
             'no_hp' => $request['phone'],
             'id_jabatan' => $request['position']

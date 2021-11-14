@@ -14,6 +14,8 @@ use App\Http\Controllers\DeleteEmployeeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\FeedbackController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,7 +77,10 @@ Route::get('/announce', [AnnouncementController::class, 'index']);
 //About Us
 Route::view('/about', 'about',  ['title' => 'About Us']);
 
-
-//Upload (testing)
+//Upload (testing upload file)
 Route::get('/upload', [UploadController::class, 'upload']);
 Route::post('/upload/proses', [UploadController::class, 'proses_upload']);
+
+//Feedback
+Route::get('/feedback', [FeedbackController::class, 'index']);
+Route::post('/feedback/send', [FeedbackController::class, 'sendFeedback']);

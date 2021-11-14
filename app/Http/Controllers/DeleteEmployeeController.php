@@ -65,8 +65,9 @@ class DeleteEmployeeController extends Controller
             $deleteDiscussionChat = DB::table('discussion_chat')->where('id_user', '=', $id)
                 ->delete();
 
-            $deleteMemberDiscussion = DB::table('discussion_member')->where('id_user', '=', $id)
-                ->delete();
+            $deleteMemberDiscussion = DB::table('discussion_member')->where('id_user', '=', $id)->delete();
+
+            $deleteMemberFeedback = DB::table('feedback')->where('id_user', '=', $id)->delete();
 
             $deleteTodoLists = DB::table('todolists')->where('id_user', '=', $id)
                 ->delete();
