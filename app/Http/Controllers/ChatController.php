@@ -62,10 +62,28 @@ class ChatController extends Controller
         $chat = $request->message;
         $curTime = new \DateTime();
 
+
+
+        // menyimpan data file yang diupload ke variabel $file
+        $nama_file = "";
+
+        $file = $request->file('file');
+        if ($file != null) {
+            $this->validate($request, [
+                'file' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'chat_file';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
         $insert = DB::table('chats')->insert([
             'id_pengirim' => Auth::user()->id,
             'id_penerima' => $id,
             'chat' => $chat,
+            'dir' => $nama_file,
             'date' => $curTime->format("Y-m-d"),
             'time' => $curTime->format("H:i")
         ]);
@@ -74,9 +92,6 @@ class ChatController extends Controller
             ->paginate();
 
 
-        return redirect()->action(
-            [ChatController::class, 'getChat'],
-            ['id' => $id]
-        );
+        return redirect()->back();
     }
 }

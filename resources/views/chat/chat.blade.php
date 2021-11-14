@@ -1,9 +1,6 @@
 @extends('layouts/layout')
-<!-- Content Wrapper. Contains page content -->
-
 
 @section('container')
-
     <div class="mt-5">
         <div class="content-wrapper ">
             <section class="content ">
@@ -13,11 +10,9 @@
                         <div class="card-header">
                             <h3 class="card-title"><b>{{ $person }}</b></h3>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body" id="myDiv">
-                            <!-- Conversations are loaded here -->
-                            <div class="direct-chat-messages" id="myDiv">
 
+                        <div class="card-body" id="myDiv">
+                            <div class="direct-chat-messages" id="myDiv">
                                 @foreach ($chat as $c)
                                     @if ($c->id_pengirim == $myId)
                                         <div class="direct-chat-msg right">
@@ -54,30 +49,30 @@
 
                                     @endif
                                 @endforeach
-                                <!-- Message to the right -->
-
-                                <!-- /.direct-chat-msg -->
                             </div>
-                            <!--/.direct-chat-messages-->
-                            <!-- /.direct-chat-pane -->
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <form action="/chat/send" method="post" role="form">
-                                @csrf
-                                <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                                    <input type="hidden" name="id" value="{{ $id }}">
-                                    <span class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.card-footer-->
-                    </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <form action="/chat/send" method="post" role="form" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="custom-file">
+                                        <input type="file" id="validatedCustomFile" name="file">
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <input type="text" name="message" placeholder="Type Message ..."
+                                            class="form-control" required>
+                                        <input type="hidden" name="id" value="{{ $id }}">
 
-                </div>
+                                        <span class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </span>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>
+
+                    </div>
 
             </section>
         </div>

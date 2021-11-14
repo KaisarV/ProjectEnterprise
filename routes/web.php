@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DeleteEmployeeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\UploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,7 +57,8 @@ Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 Route::post('/p/editprofile', [ProfileController::class, 'editProfile']);
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfilePage']);
-
+Route::get('/profile/editphoto/{id}', [ProfileController::class, 'editPhotoPage']);
+Route::post('/profile/editphoto/run', [ProfileController::class, 'editPhoto']);
 
 //Delete Employee
 Route::get('/deleteemployee', [DeleteEmployeeController::class, 'index']);
@@ -69,3 +71,11 @@ Route::post('/register/insert', [RegisterController::class, 'insertData']);
 
 //Announcement
 Route::get('/announce', [AnnouncementController::class, 'index']);
+
+//About Us
+Route::view('/about', 'about',  ['title' => 'About Us']);
+
+
+//Upload (testing)
+Route::get('/upload', [UploadController::class, 'upload']);
+Route::post('/upload/proses', [UploadController::class, 'proses_upload']);

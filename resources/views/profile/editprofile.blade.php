@@ -13,7 +13,7 @@
 
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle elevation-2" src="{{ asset('../dist/img/user1-128x128.jpg') }}"
+                    <img class="img-circle elevation-2" src="{{ url('/profile_file/' . $profile->foto) }}"
                         alt="User Avatar">
                 </div>
                 <div class="card-footer">

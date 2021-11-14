@@ -6,13 +6,18 @@
             style="opacity: .8">
         <span class="brand-text font-weight-light">Enterprise</span>
     </a>
-
+    @php
+        $profile = DB::table('users')
+            ->where('id', '=', Auth::user()->id)
+            ->get();
+    @endphp
     <!-- Sidebar -->
     <div class="sidebar" style="background-color: black">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ url('/profile_file/' . $profile[0]->foto) }}" class="img-circle elevation-2"
+                    alt="User Image">
             </div>
             <div class="info">
                 <a href="/profile/{{ Auth::user()->id }}" class="d-block"> {{ Auth::user()->name }}</a>
@@ -126,20 +131,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link {{ $title === 'Announcement' ? 'active' : '' }} ">
-                        <i class="nav-icon far fa-bell"></i>
-                        <p>
-                            Announcement
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/chat" class="nav-link {{ $title === 'About Us' ? 'active' : '' }} ">
+                    <a href="/about" class="nav-link {{ $title === 'About Us' ? 'active' : '' }} ">
                         <i class="nav-icon fa fa-building"></i>
                         <p>
                             About Us
 
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/chat" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">
+                        <i class="nav-icon fa fa-comment"></i>
+                        <p>
+                            Feedback
                         </p>
                     </a>
                 </li>
