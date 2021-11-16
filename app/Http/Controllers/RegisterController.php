@@ -82,6 +82,22 @@ class RegisterController extends Controller
             ]);
         }
 
+        //Jika admin masuk semua grup
+        if ($request['position'] == 1) {
+            $daftar_grup = DB::table('discussions')->get();
+
+            foreach ($daftar_grup as $d) {
+                if ($d->id != 8) {
+                    DB::table('discussion_member')->insert([
+                        'id_discussion' => $d->id,
+                        'id_user' => $employeeId,
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s")
+                    ]);
+                }
+            }
+        }
+
         //Jika Kepala Cabang/Manager maka gabung grup manager - kepala cabang
         if ($request['position'] == 4 || $request['position'] == 3) {
             DB::table('discussion_member')->insert([

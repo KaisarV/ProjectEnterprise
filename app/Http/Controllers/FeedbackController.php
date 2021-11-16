@@ -19,7 +19,7 @@ class FeedbackController extends Controller
     public function sendFeedback(Request $request)
     {
         // menyimpan data file yang diupload ke variabel $file
-        $nama_file = "";
+        $nama_file = null;
         $curTime = new \DateTime();
         $file = $request->file('file');
 
@@ -30,7 +30,7 @@ class FeedbackController extends Controller
 
             $nama_file = time() . "_" . $file->getClientOriginalName();
             // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'chat_file';
+            $tujuan_upload = 'feedback_file';
             $file->move($tujuan_upload, $nama_file);
         }
 

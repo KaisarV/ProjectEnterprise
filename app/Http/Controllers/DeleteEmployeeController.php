@@ -62,8 +62,7 @@ class DeleteEmployeeController extends Controller
                 ->orWhere('id_penerima', '=', $id)
                 ->delete();
 
-            $deleteDiscussionChat = DB::table('discussion_chat')->where('id_user', '=', $id)
-                ->delete();
+            $deleteDiscussionChat = DB::table('discussion_chat')->where('id_user', '=', $id)->delete();
 
             $deleteMemberDiscussion = DB::table('discussion_member')->where('id_user', '=', $id)->delete();
 
@@ -74,7 +73,6 @@ class DeleteEmployeeController extends Controller
 
             $deleteUser = DB::table('users')->where('id', '=', $id)
                 ->delete();
-
 
             return redirect()->action(
                 [DeleteEmployeeController::class, 'index']

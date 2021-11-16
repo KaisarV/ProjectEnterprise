@@ -32,40 +32,76 @@
                 <!-- /.container-fluid -->
             </div>
             <hr>
-            <!-- Main content -->
+
             <section class="content">
                 <div class="container-fluid">
-                    <section class="section shadow">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Let's post something about our job !</h4>
+                    @if (Auth::user()->id_jabatan == 1)
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>{{ $jumlahGrup }}</h3>
+                                        <p>Discussions Created</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                    </div>
+                                    <a href="/discussion" class="small-box-footer">More info <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <!-- Form untuk posting -->
-                                <form method="post" enctype="multipart/form-data">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="custom-file">
-                                                <p>Select image to upload : </p>
 
-                                                <input type="file" id="validatedCustomFile" required name="myfile">
-                                                <label class="custom-file-label" for="validatedCustomFile">Choose
-                                                    file...</label>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <textarea class="form-control" name="keterangan" placeholder="Type something"
-                                                required></textarea>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>{{ $jumlahUser }}</h3>
+
+                                        <p>User Registrations</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a href="/find" class="small-box-footer">More info <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <h3>Report/Feedback From User</h3>
+                        <br>
+                        <div class="card-columns">
+
+                            @foreach ($feedback as $f)
+
+                                @if ($f->photo != null)
+
+                                    <div class="card {{ $f->tipe === 'Bug' ? 'bg-warning' : 'bg-success' }} ">
+                                        <img class="card-img-top" src="{{ asset('/chat_file/' . $f->photo) }}"
+                                            alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">{{ $f->text }}</p>
+                                            <p class="card-text"><small
+                                                    class="text-dark">{{ $f->date }}</small></p>
                                         </div>
                                     </div>
-                                    <br>
-                                    <button class="btn btn-primary" name="upload">Post</button>
-                                </form>
-                                <!-- End Form  -->
-                            </div>
-                        </div>
-                    </section>
-                    <!-- /.content -->
+
+                                @else
+                                    <div class="card">
+                                        <div class="card-body {{ $f->tipe === 'Bug' ? 'bg-warning' : 'bg-success' }}">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">{{ $f->text }}</p>
+                                            <p class="card-text"><small
+                                                    class="text-dark ">{{ $f->date }}</small></p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                    @endif
                 </div>
             </section>
         </div>

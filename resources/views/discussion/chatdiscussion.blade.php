@@ -6,6 +6,12 @@
 
     <div class="mt-5">
         <div class="content-wrapper ">
+            @if (Session::has('success'))
+                <?php
+                echo '<script type="text/javascript"> $(document).ready(function(){swal({icon: "success", title: "Success Registered",showConfirmButton: false, timer: 1800}) });</script>';
+                ?>
+
+            @endif
             <section class="content ">
                 <div class="container-fluid ">
                     <!-- DIRECT CHAT -->

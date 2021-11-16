@@ -67,12 +67,19 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
+
                                 <a href="/chat/room/{{ $l->id }}" class="btn btn-sm bg-teal">
                                     <i class="fas fa-comments"></i>
                                 </a>
                                 <a href="profile/{{ $l->id }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
+                                @if (Auth::user()->id_jabatan == 1)
+                                    <a href="/deleteemployee/delete/{{ $l->id }}" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure you want to remove this employee?');">
+                                        <i class="fas fa-minus-square"></i> Delete
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

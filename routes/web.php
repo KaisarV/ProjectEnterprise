@@ -53,7 +53,10 @@ Route::post('/chat/send', [ChatController::class, 'sendChat']);
 //Discussion
 Route::get('/discussion', [DiscussionController::class, 'index']);
 Route::get('/discussion/chat/{id}', [DiscussionController::class, 'getChat']);
+Route::get('/discussion/create/', [DiscussionController::class, 'createPage']);
 Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
+Route::post('/discussion/create/run', [DiscussionController::class, 'create']);
+Route::get('/discussion/delete/{id}', [DiscussionController::class, 'delete']);
 
 //Profile
 Route::post('/p/editprofile', [ProfileController::class, 'editProfile']);

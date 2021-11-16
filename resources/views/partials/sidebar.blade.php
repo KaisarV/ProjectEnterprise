@@ -62,22 +62,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/deleteemployee"
-                            class="nav-link {{ $title === 'Delete Employee' ? 'active' : '' }} ">
-                            <i class="nav-icon fas fa-minus-square"></i>
+                        <a href="/discussion/create"
+                            class="nav-link {{ $title === 'Create Discussion' ? 'active' : '' }} ">
+                            <i class="nav-icon fas fa-plus"></i>
                             <p>
-                                Delete Employee
+                                Create Discussion
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/announce" class="nav-link {{ $title === 'Make Announcement' ? 'active' : '' }} ">
-                            <i class="nav-icon fas fa-bullhorn"></i>
-                            <p>
-                                Make Announcement
-                            </p>
-                        </a>
-                    </li>
+
                 @endif
 
 
@@ -139,14 +132,17 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/feedback" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">
-                        <i class="nav-icon fa fa-comment"></i>
-                        <p>
-                            Feedback/Report
-                        </p>
-                    </a>
-                </li>
+                @if (Auth::user()->id_jabatan != 1)
+                    <li class="nav-item">
+                        <a href="/feedback" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">
+                            <i class="nav-icon fa fa-comment"></i>
+                            <p>
+                                Feedback/Report
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

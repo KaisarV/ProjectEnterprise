@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 date_default_timezone_set("Asia/Jakarta");
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +28,23 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $jumlahUser = 0;
+        $jumlahGrup = 0;
+        $feedback = null;
+        if (Auth::user()->id_jabatan == 1) {
+            $jumlahUser = count(DB::table('users')->get());
+            $jumlahGrup = count(DB::table('discussions')->get());
+            $feedback = DB::table('feedback')->get();
+        }
+
         return view('index', [
             'title' => 'Home',
             'greeting' => $this->getGreeting((int) date('H'), $this->getFirstName()),
             'quote' =>  $this->getQuote((int) date('H')),
-            'id_jabatan' => Auth::user()->id_jabatan
+            'id_jabatan' => Auth::user()->id_jabatan,
+            'jumlahUser' =>  $jumlahUser,
+            'jumlahGrup' => $jumlahGrup,
+            'feedback' => $feedback
         ]);
     }
 
