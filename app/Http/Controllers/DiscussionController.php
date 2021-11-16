@@ -108,6 +108,34 @@ class DiscussionController extends Controller
             DB::table('discussions')->where('id', '=', $id)->delete();
 
             return redirect()->back()->with('success', 'your message,here');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function deleteMemberPage($id)
+    {
+        if (Auth::user()->id_jabatan == 1) {
+            $people = DB::table('discussion_member')->where('id_discussion', '=', $id)->where('id_user', '!=', Auth::user()->id)->join('users', 'users.id', '=', 'discussion_member.id_user')->get();
+
+            return view('discussion/delete', ['title' => 'Discussion', 'listpeople' => $people, 'id' => $id]);
+        } else {
+            return redirect()->action(
+                [DiscussionController::class, 'getChat']
+            );
+        }
+    }
+
+    public function deleteMember($id1, $id2)
+    {
+        if (Auth::user()->id_jabatan == 1) {
+            $people = DB::table('discussion_member')->where('id_discussion', '=', $id1)->where('id_user', '=', $id2)->delete();
+
+            return redirect()->back()->with('success', 'your message,here');
+        } else {
+            return redirect()->action(
+                [DiscussionController::class, 'getChat']
+            );
         }
     }
 }

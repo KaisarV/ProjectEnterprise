@@ -57,6 +57,9 @@ Route::get('/discussion/create/', [DiscussionController::class, 'createPage']);
 Route::post('/discussion/send', [DiscussionController::class, 'sendChat']);
 Route::post('/discussion/create/run', [DiscussionController::class, 'create']);
 Route::get('/discussion/delete/{id}', [DiscussionController::class, 'delete']);
+Route::get('/discussion/delete-member/{id}', [DiscussionController::class, 'deleteMemberPage']);
+Route::get('/discussion/delete-member/{id1}/{id2}', [DiscussionController::class, 'deleteMember']);
+
 
 //Profile
 Route::post('/p/editprofile', [ProfileController::class, 'editProfile']);

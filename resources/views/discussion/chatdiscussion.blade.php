@@ -15,10 +15,52 @@
             <section class="content ">
                 <div class="container-fluid ">
                     <!-- DIRECT CHAT -->
+
                     <div class="card direct-chat direct-chat-primary ml-4 mr-4">
                         <div class="card-header">
                             <h3 class="card-title"><b>{{ $name }}</b></h3>
+                            @if (Auth::user()->id_jabatan == 1)
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" data-toggle="dropdown" href="#">
+                                            <span class="badge navbar-badge"><i class="fa fa-bars fa-lg"
+                                                    aria-hidden="true"></i></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                            <a href="/discussion/delete-member/{{ $idDiscussion }}"
+                                                class="dropdown-item">
+                                                <!-- Message Start -->
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h3 class="dropdown-item-title">
+                                                            Delete Member
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <!-- Message End -->
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item">
+                                                <!-- Message Start -->
+                                                <div class="media">
+
+                                                    <div class="media-body">
+                                                        <h3 class="dropdown-item-title">
+                                                            Add Member
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <!-- Message End -->
+                                            </a>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+                            @endif
+
                         </div>
+
                         <!-- /.card-header -->
                         <div class="card-body" id="myDiv">
                             <!-- Conversations are loaded here -->

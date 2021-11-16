@@ -4,7 +4,7 @@
 
 @section('container')
 
-    <div class="mt-5">
+    <div class="mt-2">
         <div class="content-wrapper ">
             @if (Session::has('success'))
                 <?php
@@ -16,13 +16,17 @@
 
             <div class="content">
                 <div class="page-heading">
-                    <h3>Discussion</h3>
-                    <blockquote class="blockquote text-right">
+                    <br>
+                    <div class="ml-4">
+                        <h3>Discussion</h3>
+                    </div>
+                    <blockquote class="blockquote text-right ml-4">
 
                         <div class="blockquote-footer">The aim of argument, or of discussion, should not be victory, but
                             progress. <cite title="Source Title">Joseph Joubert</cite></div>
                     </blockquote>
                     <div class="ml-4">
+
                         @if (Auth::user()->id_jabatan == 1)
                             <a href="discussion/create" class="btn btn-primary">Create Discussion +</a>
                         @endif

@@ -31,11 +31,14 @@ class HomeController extends Controller
         $jumlahUser = 0;
         $jumlahGrup = 0;
         $feedback = null;
+        $mynote = $todo = DB::table('todolists')->where('id_user', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
         if (Auth::user()->id_jabatan == 1) {
             $jumlahUser = count(DB::table('users')->get());
             $jumlahGrup = count(DB::table('discussions')->get());
-            $feedback = DB::table('feedback')->get();
+            $feedback = DB::table('feedback')->join('users', 'users.id', '=', 'feedback.id_user')->get();
         }
+
+
 
         return view('index', [
             'title' => 'Home',
@@ -44,7 +47,8 @@ class HomeController extends Controller
             'id_jabatan' => Auth::user()->id_jabatan,
             'jumlahUser' =>  $jumlahUser,
             'jumlahGrup' => $jumlahGrup,
-            'feedback' => $feedback
+            'feedback' => $feedback,
+            'mynote' => $mynote
         ]);
     }
 

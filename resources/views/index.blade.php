@@ -19,9 +19,9 @@
                             <h1 class="m-0">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
+                            {{-- <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            </ol>
+                            </ol> --}}
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                     <hr>
@@ -35,7 +35,50 @@
 
             <section class="content">
                 <div class="container-fluid">
+                    @if (count($mynote) != 0)
+                        <h3>Your Note</h3>
+                        <br>
+                    @endif
+                    <div class="row">
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($mynote as $t)
+                            <div class="col-sm-5 mr-4">
+                                <div class="card card-info card-outline " style="background-color: #333333">
+                                    <div class="card-header" style="background-color: #e6b905">
+                                        <h5 class="card-title text-white">{{ $t->title }}</h5>
+                                        <div class="card-tools">
+                                            <a href="" class="btn btn-tool btn-link"
+                                                style="color: white">#{{ $index }}</a>
+                                            <a href="todo/edit/{{ $t->id }}" class="btn btn-tool">
+                                                <i class="fas fa-pen white" style="color: white"></i>
+                                                <a href="/todo/{{ $t->id }}/delete" class="ml-2">
+                                                    <i class="fas fa-trash white" style="color: white"></i>
+                                                </a>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-white">
+                                        <p style="color: white">
+                                            {!! $t->text !!}
+                                        </p>
+                                    </div>
+                                </div>
+                                <?php
+                                $index++;
+                                ?>
+                            </div>
+                            @php
+                                $index++;
+                            @endphp
+
+                        @endforeach
+                    </div>
                     @if (Auth::user()->id_jabatan == 1)
+                        <hr>
+                        <h3>Website Data</h3>
+                        <br>
                         <div class="row">
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
@@ -83,9 +126,9 @@
                                         <img class="card-img-top" src="{{ asset('/chat_file/' . $f->photo) }}"
                                             alt="Card image cap">
                                         <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
+                                            <h5 class="card-title mb-3"><b>{{ $f->name }}</b></h5>
                                             <p class="card-text">{{ $f->text }}</p>
-                                            <p class="card-text"><small
+                                            <p class="card-text "><small
                                                     class="text-dark">{{ $f->date }}</small></p>
                                         </div>
                                     </div>
@@ -93,7 +136,7 @@
                                 @else
                                     <div class="card">
                                         <div class="card-body {{ $f->tipe === 'Bug' ? 'bg-warning' : 'bg-success' }}">
-                                            <h5 class="card-title">Card title</h5>
+                                            <h5 class="card-title mb-3"><b>{{ $f->name }}</b></h5>
                                             <p class="card-text">{{ $f->text }}</p>
                                             <p class="card-text"><small
                                                     class="text-dark ">{{ $f->date }}</small></p>
