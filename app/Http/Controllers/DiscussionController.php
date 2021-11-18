@@ -35,7 +35,7 @@ class DiscussionController extends Controller
         $cek = DB::table('discussion_member')->where('id_discussion', '=', $id)->where('id_user', '=', Auth::user()->id)->get();
 
         if ($cek != null) {
-            $chatDiscussion = DB::table('discussion_chat')->where('id_discussion', '=', $id)->join('users', 'discussion_chat.id_user', '=', 'users.id')->select('discussions.*')->select('discussion_chat.*', 'users.name')->get();
+            $chatDiscussion = DB::table('discussion_chat')->where('id_discussion', '=', $id)->join('users', 'discussion_chat.id_user', '=', 'users.id')->select('discussions.*')->select('discussion_chat.*', 'users.name', 'users.foto')->get();
 
             $getName = DB::table('discussions')->where('id', '=', $id)->get();
             $name = $getName[0]->discussion_name;
@@ -118,7 +118,10 @@ class DiscussionController extends Controller
         if (Auth::user()->id_jabatan == 1) {
             $people = DB::table('discussion_member')->where('id_discussion', '=', $id)->where('id_user', '!=', Auth::user()->id)->join('users', 'users.id', '=', 'discussion_member.id_user')->get();
 
-            return view('discussion/delete', ['title' => 'Discussion', 'listpeople' => $people, 'id' => $id]);
+            return view('discussion/adddelete', [
+                'title' => 'Discussion', 'listpeople' => $people, 'id' => $id,
+                'operation' => 'delete'
+            ]);
         } else {
             return redirect()->action(
                 [DiscussionController::class, 'getChat']
@@ -131,10 +134,45 @@ class DiscussionController extends Controller
         if (Auth::user()->id_jabatan == 1) {
             $people = DB::table('discussion_member')->where('id_discussion', '=', $id1)->where('id_user', '=', $id2)->delete();
 
-            return redirect()->back()->with('success', 'your message,here');
+            return redirect()->back()->with('success1', 'your message,here');
+        } else {
+            return redirect()->action(
+                [DiscussionController::class, 'getChat'],
+                ['id' => $id1]
+            );
+        }
+    }
+
+    public function addMemberPage($id)
+    {
+        if (Auth::user()->id_jabatan == 1) {
+            $people = DB::table('users')->select('id', 'name')->whereNotIn('users.id', DB::table('discussion_member')->select('discussion_member.id_user')->where('discussion_member.id_discussion', '=', $id))->get();
+
+            return view('discussion/adddelete', [
+                'title' => 'Discussion', 'listpeople' => $people, 'id' => $id,
+                'operation' => 'add'
+            ]);
         } else {
             return redirect()->action(
                 [DiscussionController::class, 'getChat']
+            );
+        }
+    }
+    public function addMember($id1, $id2)
+    {
+        if (Auth::user()->id_jabatan == 1) {
+            DB::table('discussion_member')->insert([
+                'id_discussion' => $id1,
+                'id_user' => $id2,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ]);
+
+            return redirect()->back()->with('success2', 'your message,here');
+        } else {
+            return redirect()->action(
+                [DiscussionController::class, 'getChat'],
+                ['id' => $id1]
             );
         }
     }

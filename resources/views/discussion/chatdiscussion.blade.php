@@ -40,7 +40,7 @@
                                                 <!-- Message End -->
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item">
+                                            <a href="/discusssion/add-member/{{ $idDiscussion }}" class="dropdown-item">
                                                 <!-- Message Start -->
                                                 <div class="media">
 
@@ -75,7 +75,7 @@
                                                     {{ $d->time }}</span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
-                                            <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}"
+                                            <img class="direct-chat-img" src="{{ asset('/profile_file/' . $d->foto) }}"
                                                 alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
@@ -91,7 +91,7 @@
                                                     {{ $d->time }}</span>
                                             </div>
                                             <!-- /.direct-chat-infos -->
-                                            <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}"
+                                            <img class="direct-chat-img" src="{{ asset('/profile_file/' . $d->foto) }}"
                                                 alt="message user image">
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text">
