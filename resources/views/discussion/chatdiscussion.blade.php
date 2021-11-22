@@ -73,6 +73,12 @@
                                                 <span class="direct-chat-name float-right">You</span>
                                                 <span class="direct-chat-timestamp float-left">{{ $d->date }}
                                                     {{ $d->time }}</span>
+                                                @if ($d->dir != null)
+                                                    <br>
+                                                    <img src="{{ asset('/discussion_file/' . $d->dir) }}" alt=""
+                                                        class="img-thumbnail w-25 float-right  mt-1 mb-1">
+
+                                                @endif
                                             </div>
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{ asset('/profile_file/' . $d->foto) }}"
@@ -89,6 +95,13 @@
                                                 <span class="direct-chat-name float-left">{{ $d->name }}</span>
                                                 <span class="direct-chat-timestamp float-right">{{ $d->date }}
                                                     {{ $d->time }}</span>
+
+                                                @if ($d->dir != null)
+                                                    <br>
+                                                    <img src="{{ asset('/discussion_file/' . $d->dir) }}" alt=""
+                                                        class="img-thumbnail w-25 float-left mt-1 mb-1">
+
+                                                @endif
                                             </div>
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{ asset('/profile_file/' . $d->foto) }}"
@@ -108,10 +121,14 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <form action="/discussion/send" method="post" role="form">
+                            <form action="/discussion/send" method="post" role="form" enctype="multipart/form-data">
                                 @csrf
+                                <div class=" custom-file">
+                                    <input type="file" id="validatedCustomFile" name="file">
+                                </div>
                                 <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control"
+                                        required>
                                     <input type="hidden" name="id" value="{{ $idDiscussion }}">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-primary">Send</button>

@@ -3,6 +3,7 @@
 @section('container')
     <div class="mt-2">
         <div class="content-wrapper ">
+
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -14,6 +15,7 @@
                 </div>
                 <!-- /.container-fluid -->
             </div>
+
             <div class=" ml-4 mr-4">
                 <div class="card card-primary">
                     <div class="card-header">
@@ -41,6 +43,8 @@
                         </div>
                     </form>
                 </div>
+
             </div>
+
         </div>
     @endsection

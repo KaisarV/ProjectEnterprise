@@ -50,7 +50,6 @@ class TodoController extends Controller
 
     public function deleteTodo($id)
     {
-
         $todo2 = Todolist::all()->where('id', '=', $id);
         $idUserNow = Auth::user()->id;
         $cek = 0;

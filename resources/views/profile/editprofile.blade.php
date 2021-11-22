@@ -29,8 +29,8 @@
                                         City : <input type="text" class="form-control" value="{{ $profile->kota }}"
                                             name="city">
 
-                                        Phone: <input type="number" class="form-control" value="{{ $profile->no_hp }}"
-                                            name="phone">
+                                        Phone: <input type="number" class="form-control"
+                                            value="{{ (int) $profile->no_hp }}" name="phone">
 
                                         Email: <input type="text" class="form-control" value="{{ $profile->email }}"
                                             name="email">

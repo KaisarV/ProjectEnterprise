@@ -51,7 +51,7 @@
 
                     @if ($cek == 0)
                         <a href="/chat/room/{{ $idChatFriend }}"
-                            class="card card-light card-outline mt-3 hover2 ml-4 mr-4 mt-4">
+                            class="card card-light card-outline mt-3 hover2 ml-4 mr-4 mt-4 bg-dark">
                             <div class="card-header">
                                 @php
                                     array_push($id, $idChatFriend);
@@ -67,6 +67,10 @@
                             <div class="card-body">
                                 <p>
                                     {{ $sender }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{!! $c->chat !!}
+
+                                    @if ($c->dir != null)
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="nav-icon fa fa-file-image"></i>
+                                    @endif
                                 </p>
                             </div>
                         </a>

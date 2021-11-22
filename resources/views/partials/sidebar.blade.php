@@ -123,15 +123,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/about" class="nav-link {{ $title === 'About Us' ? 'active' : '' }} ">
-                        <i class="nav-icon fa fa-building"></i>
-                        <p>
-                            About Us
 
-                        </p>
-                    </a>
-                </li>
                 @if (Auth::user()->id_jabatan != 1)
                     <li class="nav-item">
                         <a href="/feedback" class="nav-link {{ $title === 'Feedback' ? 'active' : '' }} ">

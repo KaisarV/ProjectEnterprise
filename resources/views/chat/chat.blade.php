@@ -15,12 +15,23 @@
                             <div class="direct-chat-messages" id="myDiv">
                                 @foreach ($chat as $c)
                                     @if ($c->id_pengirim == $myId)
-                                        <div class="direct-chat-msg right">
+
+                                        <div class="direct-chat-msg right float-none">
+
+
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-right">You</span>
                                                 <span class="direct-chat-timestamp float-left">{{ $c->date }}
                                                     {{ $c->time }}</span>
+
+                                                @if ($c->dir != null)
+                                                    <br>
+                                                    <img src="{{ asset('/chat_file/' . $c->dir) }}" alt=""
+                                                        class="img-thumbnail w-25 float-right  mt-1 mb-1">
+
+                                                @endif
                                             </div>
+
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{ asset('/profile_file/' . $img1) }}"
                                                 alt="message user image">
@@ -31,11 +42,18 @@
                                             <!-- /.direct-chat-text -->
                                         </div>
                                     @else
+
                                         <div class="direct-chat-msg">
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-left">{{ $person }}</span>
                                                 <span class="direct-chat-timestamp float-right">{{ $c->date }}
                                                     {{ $c->time }}</span>
+                                                @if ($c->dir != null)
+                                                    <br>
+                                                    <img src="{{ asset('/chat_file/' . $c->dir) }}" alt=""
+                                                        class="img-thumbnail w-25 float-left mt-1 mb-1">
+
+                                                @endif
                                             </div>
                                             <!-- /.direct-chat-infos -->
                                             <img class="direct-chat-img" src="{{ asset('/profile_file/' . $img2) }}"

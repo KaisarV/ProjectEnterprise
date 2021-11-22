@@ -5,9 +5,9 @@
 
     <div class="content-wrapper">
         <blockquote class="blockquote text-center">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+            <p class="mb-0">If everyone is moving forward together, then success takes care of itself
             </p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            <footer class="blockquote-footer">Henry Ford </footer>
         </blockquote>
 
 
@@ -48,15 +48,17 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><b>{{ $l->name }}</b></h2>
-                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee
-                                        Lover </p>
+                                    <h2 class="lead mb-3"><b>{{ $l->name }}</b></h2>
+
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
-                                                    class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo
-                                            City 04312, NJ</li>
-                                        <li class="small"><span class="fa-li"><i
-                                                    class="fas fa-lg fa-phone"></i></span> Phone #: {{ $l->no_hp }}</li>
+                                                    class="fas fa-lg fa-building"></i></span> Address: {{ $l->alamat }},
+                                            {{ $l->kota }}</li>
+
+                                        <li class="small"><span class="fa-li "><i
+                                                    class="fas fa-lg fa-phone"></i></span>
+                                            <div class="mt-3"> Phone #: {{ $l->no_hp }}</div>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -28,14 +29,32 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $response = Http::get('https://api.kawalcorona.com/indonesia/');
+        $data = $response->json();
+
+        $response2 = Http::get('https://api.open-meteo.com/v1/forecast?latitude=-6.1862&longitude=106.8063&hourly=temperature_2m');
+
+        $response2 = Http::get('api.openweathermap.org/data/2.5/weather?q=' . Auth::user()->kota . '&appid=87bcb680997c9aa6eecf132fac82a3db');
+
+
+
+        $data2 = $response2->json();
+        if (!empty($data2['message'])) {
+            $response2 = Http::get('api.openweathermap.org/data/2.5/weather?q=' . 'Jakarta' . '&appid=87bcb680997c9aa6eecf132fac82a3db');
+
+            $data2 = $response2->json();
+        }
+
         $jumlahUser = 0;
         $jumlahGrup = 0;
+        $jumlahFeedback = 0;
         $feedback = null;
         $mynote = $todo = DB::table('todolists')->where('id_user', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
         if (Auth::user()->id_jabatan == 1) {
             $jumlahUser = count(DB::table('users')->get());
             $jumlahGrup = count(DB::table('discussions')->get());
             $feedback = DB::table('feedback')->join('users', 'users.id', '=', 'feedback.id_user')->get();
+            $jumlahFeedback = count(DB::table('feedback')->get());
         }
 
 
@@ -48,7 +67,10 @@ class HomeController extends Controller
             'jumlahUser' =>  $jumlahUser,
             'jumlahGrup' => $jumlahGrup,
             'feedback' => $feedback,
-            'mynote' => $mynote
+            'mynote' => $mynote,
+            'jumlahFeedback' => $jumlahFeedback,
+            'data' => $data,
+            'data2' => $data2
         ]);
     }
 

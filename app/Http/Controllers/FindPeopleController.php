@@ -18,7 +18,7 @@ class FindPeopleController extends Controller
     {
         $myId = Auth::user()->id;
         $people = DB::table('users')->where('users.id', '!=', Auth::user()->id)->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id')
-            ->select('users.*', 'jabatan.jabatan')->get();;
+            ->select('users.*', 'jabatan.jabatan')->get();
 
 
 
@@ -34,9 +34,8 @@ class FindPeopleController extends Controller
         $name = $request->people;
 
         $people = DB::table('users')->where('name', 'like', '%' . $name . '%')
-            ->where('id', '!=', Auth::user()->id)
-            ->where('id', '!=', Auth::user()->id)
-            ->paginate();
+            ->where('users.id', '!=', Auth::user()->id)->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id')
+            ->select('users.*', 'jabatan.jabatan')->get();
 
         return view('findpeople/find', [
             'title' => 'Find',

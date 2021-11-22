@@ -15,8 +15,10 @@
             <!-- Widget: user widget style 1 -->
             <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-info">
-                    <h2>{{ $profile->name }}</h2>
+                <div class="widget-user-header bg-info"
+                    style="background-image: url({{ asset('dist/img/city.jpg') }});background-size: cover"
+                    class="jumbotron" id="landing-wrapper">
+                    <h2 class="text-dark">{{ $profile->name }}</h2>
 
                 </div>
                 <div class="widget-user-image">
@@ -25,7 +27,7 @@
                 </div>
 
 
-                <div class="card-footer">
+                <div class="card-footer text-light" style="background-color: black">
 
                     @if ($profile->id == $myId)
                         <div class="text-center mt-1 mb-4">

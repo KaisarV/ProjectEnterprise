@@ -53,10 +53,7 @@ class DeleteEmployeeController extends Controller
     {
 
         if (Auth::user()->id_jabatan == 1) {
-            if ($id > 3) {
-                $deleteDataUserCabang = DB::table('data_user_cabang')->where('id_user', '=', $id)
-                    ->delete();
-            }
+
 
             $deleteChat = DB::table('chats')->where('id_pengirim', '=', $id)
                 ->orWhere('id_penerima', '=', $id)
@@ -71,9 +68,11 @@ class DeleteEmployeeController extends Controller
             $deleteTodoLists = DB::table('todolists')->where('id_user', '=', $id)
                 ->delete();
 
-            $deleteUser = DB::table('users')->where('id', '=', $id)
+            $deleteDataUserCabang = DB::table('data_user_cabang')->where('id_user', '=', $id)
                 ->delete();
 
+            $deleteUser = DB::table('users')->where('id', '=', $id)
+                ->delete();
             return redirect()->action(
                 [DeleteEmployeeController::class, 'index']
             )->with('success', 'The success message!');;

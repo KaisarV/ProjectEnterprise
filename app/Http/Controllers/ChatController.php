@@ -68,7 +68,7 @@ class ChatController extends Controller
 
 
         // menyimpan data file yang diupload ke variabel $file
-        $nama_file = "";
+        $nama_file = null;
 
         $file = $request->file('file');
 

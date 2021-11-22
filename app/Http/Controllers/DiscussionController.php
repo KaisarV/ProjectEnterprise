@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 
 class DiscussionController extends Controller
 {
-
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -53,10 +51,27 @@ class DiscussionController extends Controller
         $idPengirim = Auth::user()->id;
         $curTime = new \DateTime();
 
+        // menyimpan data file yang diupload ke variabel $file
+        $nama_file = null;
+
+        $file = $request->file('file');
+
+        if ($file != null) {
+            $this->validate($request, [
+                'file' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'discussion_file';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
         $insert = DB::table('discussion_chat')->insert([
             'id_user' => $idPengirim,
             'id_discussion' => $idDiscussion,
             'chat' => $chat,
+            'dir' => $nama_file,
             'date' => $curTime->format("Y-m-d"),
             'time' => $curTime->format("H:i")
         ]);
